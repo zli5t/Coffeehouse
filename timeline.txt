@@ -1,0 +1,24 @@
+Before going to the following state, we must have the following accomplished
+This is listed in approximately order of priority
+
+Pre-Alpha
+    Basic System Architecture
+    People 
+    Profiles
+    Discussions 
+    Interests (tags)
+    Proximity                           
+
+Alpha
+    Person's "Wall" w/ communication
+    Starring
+
+Beta (Public)
+    Groups
+
+Gamma
+    Full-text search
+    Some Ajax functionality
+    Physical Proximity
+    
+            

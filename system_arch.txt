@@ -1,0 +1,57 @@
+System Architecture
+   
+There are People
+    People have a set of attributes describing them (i.e. a profile)
+        Including a Physical Location
+    People have Interests
+    People can Follow other People
+    People can Follow Groups
+
+/* NEED TO WORK OUT SUB-POST HIEARACHY SYSTEM 
+    AND METHOD OF PRIROTIZING SUB-POSTS TO A PERSON */
+There are Discussions
+    Discussions have a URL
+    Discussions begin with a Topic
+            which contains some text and an optional /heading/
+    Discussions consist of Posts
+        Posts can be Starred by an individual
+            This brings up an option to alert PARTICULAR individuals to a post
+        Posts can also be linked to
+
+    Topics can be Tagged with Interests (tagging is autocompleted)
+    Topics can belong to a Group
+
+
+Groups consist of a set of people
+Groups have small profile pages
+A person can also see all posts that belong to a Group and easily post to a 
+Group
+
+A Person can Search for an Interest
+    (This is equivalent to the Interest's "Page")
+    The Person will be presented with a set of discussions weighted by what
+    the system thinks the person would like, in particular:
+        === The following list is referred to as Proximity ===
+        The closeness on the social graph of the people in the discussion
+            This is enchanced by closeness in Groups
+        How much people close on the social graph have starred the discussion
+        The intensity of the discussion
+        The age of the discussion
+        The levels of common interest in the people in the discussion    
+        Physical Proximity
+Likewise, a Person can search for any term, which will do a search not
+just by Interest but by content in the posts
+
+
+A Person's Home Page shows 
+    Discussions the person is involved in
+    Interests/common Search Terms/Groups
+    Interesting discussions to join
+    
+A Person's Profile Page shows
+    the person's basic profile information
+    Posts the person is participating in, weighted by Proximity 
+        With emphasis for person-to-person communication
+    A Box to communicate with the person which will place this post on the
+        above wall
+

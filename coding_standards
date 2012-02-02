@@ -1,0 +1,7 @@
+= Python =
+- Classes are CamelCase
+- Functions, methods are underscore_separated
+- No keyword variables ('pass' is not a good var name, use 'passwd')
+- 5-space indents
+- 1 empty line after function/method, two after a class, one in between
+  logical 'paragraphs' of code
