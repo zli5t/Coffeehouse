@@ -32,11 +32,11 @@ class User(db.Model):
     def has_password(self, password):
         return self.password_hash == gen_hash(password)
 
-@app.route("/")
-def index_page():
-    return render_template("index.html")
+def login(user):
+    session["user_id"] = user.id
 
-def get_user(email, password):
+
+def retrieve_user(email, password):
     if not (email and password):
         return None
     user = User.query.filter_by(email=email).first()
@@ -45,32 +45,38 @@ def get_user(email, password):
     else:
         return None
 
-def login(user):
-    session["user"] = user
+def get_user(id):
+    user = User.query.filter_by(id=id).first()
+    if (user):
+        print user.id, user.name, user.email
+    return user
 
-def logout(user):
-    pass
-   
+def logged_in():
+    return ('user_id' in session) and session['user_id']
 
-@app.route("/login", methods=['GET', 'POST'])
-def login_page():
-    if request.method == 'POST':
-        user = get_user(request.form["email"], request.form["password"])
+@app.route("/") 
+def index():
+    if logged_in():
+        return render_template("home.html", 
+                                user=get_user(session["user_id"]))
+    else:
+        return render_template("login.html")
+
+@app.route("/login", methods=['POST'])
+def login():
+    if not logged_in():
+        user = retrieve_user(request.form["email"], request.form["password"])
         if (user):
-            login(user)
-            return redirect(url_for('home_page'))
+            session['user_id'] = user.id
         else:
             flash('Invalid login')
-            return redirect(url_for('login_page'))
-    else:
-        return redirect(url_for('index_page'))
+    return redirect(url_for('index'))
+    
+@app.route('/logout')
+def logout():
+    session["user_id"] = 0
+    return redirect(url_for('index'))
 
-@app.route('/home')
-def home_page():
-    user = session["user"]
-    return render_template("home.html", name=user.name)
-    
-    
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
